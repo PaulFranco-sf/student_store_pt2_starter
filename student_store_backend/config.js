@@ -5,8 +5,6 @@ const PORT = process.env.PORT ? Number(process.env.PORT) : 3001
 
 const IS_TESTING = process.env.NODE_ENV === "test"
 
-const SECRETKEY = process.env.SECRET_KEY
-console.log(SECRETKEY)
 function getDatabaseUri() {
   const dbUser = process.env.DATABASE_USER || "postgres"
   const dbPass = process.env.DATABASE_PASS ? encodeURI(process.env.DATABASE_PASS) : "postgres"
@@ -22,6 +20,9 @@ function getDatabaseUri() {
 // Speed up bcrypt for tests when security isn't important
 const BCRYPT_WORK_FACTOR = IS_TESTING ? 4 : 13
 
+// Export secret key for JWT
+const SECRET_KEY = process.env.SECRET_KEY || "secret_dev"
+
 console.log("Auth Starter Config:".red)
 console.log("PORT:".blue, PORT)
 console.log("IS_TESTING:".blue, IS_TESTING)
@@ -30,9 +31,9 @@ console.log("Database:".blue, getDatabaseUri())
 console.log("---")
 
 module.exports = {
-  SECRETKEY,
   PORT,
   IS_TESTING,
   BCRYPT_WORK_FACTOR,
   getDatabaseUri,
+  SECRET_KEY,
 }

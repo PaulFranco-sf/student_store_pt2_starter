@@ -32,7 +32,7 @@ export default function App() {
 
   const handleOnCheckout = async () => {
     setIsCheckingOut(true)
-
+    console.log(cart)
     try {
       const res = await axios.post("http://localhost:3001/orders", { order: cart })
       if (res?.data?.order) {

@@ -1,16 +1,10 @@
-const express = require("express")
-const Store = require("../models/store")
-const router = express.Router()
+const Store = require('../models/store');
+const express = require('express');
+const router = express.Router();
 
-router.get("/", async (req, res, next) => {
-  try {
-    // const user = await User.login(req.body)
-    return res.status(200).json({ user })
-  } catch (err) {
-    next(err)
-  }
-})
+router.get('/', async (req, res) => {
+  const products = await Store.listProducts();
+  res.json({ products });
+});
 
-
-module.exports = router
-  
+module.exports = router;
