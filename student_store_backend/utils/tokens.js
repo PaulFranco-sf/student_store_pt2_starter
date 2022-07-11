@@ -3,7 +3,8 @@ const { SECRETKEY } = require("../config")
 
 const generateToken = (data) => jwt.sign(data, SECRETKEY, { expiresIn: "24h" })
 
-const createuserJwt = (user) => {
+const createUserJwt = (user) => {
+    console.log("OK")
     const payload = {
         email: user.email,
         isAdmin: user.isAdmin || false,
@@ -23,5 +24,5 @@ const validateToken = (token) => {
 module.exports = {
     generateToken,
     validateToken,
-    createuserJwt,
+    createUserJwt,
 }

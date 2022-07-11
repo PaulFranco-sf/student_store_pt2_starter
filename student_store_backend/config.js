@@ -5,15 +5,15 @@ const PORT = process.env.PORT ? Number(process.env.PORT) : 3001
 
 const IS_TESTING = process.env.NODE_ENV === "test"
 
-const SECRETKEY = process.env.SECRETKEY
-
+const SECRETKEY = process.env.SECRET_KEY
+console.log(SECRETKEY)
 function getDatabaseUri() {
   const dbUser = process.env.DATABASE_USER || "postgres"
   const dbPass = process.env.DATABASE_PASS ? encodeURI(process.env.DATABASE_PASS) : "postgres"
   const dbHost = process.env.DATABASE_HOST || "localhost"
   const dbPort = process.env.DATABASE_PORT || 5432
   const dbTestName = process.env.DATABASE_TEST_NAME || "student_store_test"
-  const dbProdName = process.env.DATABASE_NAME || "student_sore"
+  const dbProdName = process.env.DATABASE_NAME || "student_store"
   const dbName = process.env.NODE_ENV === "test" ? dbTestName : dbProdName
 
   return process.env.DATABASE_URL || `postgresql://${dbUser}:${dbPass}@${dbHost}:${dbPort}/${dbName}`

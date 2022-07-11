@@ -9,22 +9,20 @@ const storeRoutes = require("./routes/store")
 const security = require("./middleware/security")
 const app = express()
 
-// enable cross-origin resource sharing for all origins for all requests
-// NOTE: in production, we'll want to restrict this to only the origin
-// hosting our frontend.
 app.use(cors())
-// parse incoming requests with JSON payloads
 app.use(express.json())
-// log requests info
-app.use(morgan("tiny"))
+app.use(morgan("common"))
 app.use(security.extractUserFromJwt)
 
 app.use("/auth", authRoutes)
 app.use("/store", storeRoutes)
 app.use("/order", orderRoutes)
-/** Handle 404 errors -- this matches everything */
 app.use((req, res, next) => {
   return next(new NotFoundError())
+})
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
 })
 
 /** Generic error handler; anything unhandled goes here. */

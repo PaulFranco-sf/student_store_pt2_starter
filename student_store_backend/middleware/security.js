@@ -14,7 +14,7 @@ const jwtForm = ({ headers }) => {
 
 const extractUserFromJwt = (req, res, next) => {
     try {
-        const token = jwtFrom(req)
+        const token = jwtForm(req)
         if (token) {
             res.locals.user = jwt.verify(token, SECRETKEY)
         }

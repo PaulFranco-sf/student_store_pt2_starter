@@ -1,2 +1,3 @@
 node_modules
+../student-store-ui/node_modules
 .env
